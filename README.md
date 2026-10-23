@@ -28,4 +28,4 @@ Se verificaron las operaciones del CRUD, la búsqueda de registros inexistentes 
 
 ## Video explicativo
 
-Enlace público:
+Enlace público:https://drive.google.com/file/d/1J94cSmN5Lkiz6WgNYxSEdcuUqtpmjxa9/view?usp=sharing
