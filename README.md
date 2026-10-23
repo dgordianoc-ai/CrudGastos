@@ -25,3 +25,4 @@ Aplicación de consola desarrollada en C# para registrar, listar, buscar, actual
 
 ## Pruebas realizadas
 Se verificaron las operaciones del CRUD, la búsqueda de registros inexistentes y el manejo de errores de conexión.
+
