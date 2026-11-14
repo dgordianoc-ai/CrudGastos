@@ -7,7 +7,7 @@ namespace CrudGastos
     public class GastoRepositorio
     {
         private readonly string cadenaConexion =
-            @"Server=(localdb)\MSSQLLocalDB;Database=GastosDB;Trusted_Connection=True;";
+            @"Server=(localdb)\MSSQLLocalDB;Database=AcademiaDB;Trusted_Connection=True;";
 
         public void Insertar(Gasto gasto)
         {
@@ -17,9 +17,9 @@ namespace CrudGastos
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             using (SqlCommand comando = new SqlCommand(sql, conexion))
             {
-                comando.Parameters.AddWithValue("@descripcion", gasto.Descripcion);
-                comando.Parameters.AddWithValue("@monto", gasto.Monto);
-                comando.Parameters.AddWithValue("@categoria", gasto.Categoria);
+                comando.Parameters.AddWithValue("@descripcion", gasto.Nombre);
+                comando.Parameters.AddWithValue("@monto", gasto.Cuota);
+                comando.Parameters.AddWithValue("@categoria", gasto.Instructor);
 
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -45,9 +45,9 @@ namespace CrudGastos
                         Gasto gasto = new Gasto
                         {
                             Id = lector.GetInt32(0),
-                            Descripcion = lector.GetString(1),
-                            Monto = lector.GetDecimal(2),
-                            Categoria = lector.GetString(3)
+                            Nombre = lector.GetString(1),
+                            Cuota = lector.GetDecimal(2),
+                            Instructor = lector.GetString(3)
                         };
 
                         gastos.Add(gasto);
@@ -76,9 +76,9 @@ namespace CrudGastos
                         return new Gasto
                         {
                             Id = lector.GetInt32(0),
-                            Descripcion = lector.GetString(1),
-                            Monto = lector.GetDecimal(2),
-                            Categoria = lector.GetString(3)
+                            Nombre = lector.GetString(1),
+                            Cuota = lector.GetDecimal(2),
+                            Instructor = lector.GetString(3)
                         };
                     }
                 }
@@ -94,7 +94,7 @@ namespace CrudGastos
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             using (SqlCommand comando = new SqlCommand(sql, conexion))
             {
-                comando.Parameters.AddWithValue("@monto", gasto.Monto);
+                comando.Parameters.AddWithValue("@monto", gasto.Cuota);
                 comando.Parameters.AddWithValue("@id", gasto.Id);
 
                 conexion.Open();

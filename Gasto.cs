@@ -4,14 +4,14 @@ namespace CrudGastos
     public class Gasto
     {
         public int Id { get; set; }
-        public string Descripcion { get; set; } = "";
-        public decimal Monto { get; set; }
-        public string Categoria { get; set; } = "";
+        public string Nombre { get; set; } = "";
+        public decimal Cuota { get; set; }
+        public string Instructor { get; set; } = "";
 
         public override string ToString()
         {
-            return Id + " - " + Descripcion + " - Q " +
-                   Monto.ToString("0.00") + " - " + Categoria;
+            return Id + " - " + Nombre + " - Q " +
+                   Cuota.ToString("0.00") + " - " + Instructor;
         }
     }
 }

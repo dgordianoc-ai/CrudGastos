@@ -15,12 +15,12 @@ namespace CrudGastos
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("===== MENÚ DE GASTOS =====");
-                Console.WriteLine("1. Registrar gasto");
-                Console.WriteLine("2. Listar gastos");
-                Console.WriteLine("3. Buscar gasto por Id");
-                Console.WriteLine("4. Actualizar monto");
-                Console.WriteLine("5. Eliminar gasto");
+                Console.WriteLine("===== Registro Academia =====");
+                Console.WriteLine("1. Registrar Nombre");
+                Console.WriteLine("2. Listar Nombres");
+                Console.WriteLine("3. Buscar Idioma");
+                Console.WriteLine("4. Actualizar Cuota");
+                Console.WriteLine("5. Eliminar registro");
                 Console.WriteLine("6. Salir");
                 Console.Write("Elige una opción: ");
                 opcion = Console.ReadLine() ?? "";
@@ -61,43 +61,43 @@ namespace CrudGastos
 
         private static void RegistrarGasto(GastoRepositorio repo)
         {
-            Console.Write("Descripción: ");
+            Console.Write("Nombre: ");
             string descripcion = Console.ReadLine() ?? "";
 
             if (string.IsNullOrWhiteSpace(descripcion))
             {
-                Console.WriteLine("La descripción es obligatoria.");
+                Console.WriteLine("El nombre es obligatoria.");
                 return;
             }
 
-            Console.Write("Monto: ");
+            Console.Write("Gasto Idioma: ");
 
             if (!decimal.TryParse(Console.ReadLine(), out decimal monto) || monto <= 0)
             {
-                Console.WriteLine("Monto inválido.");
+                Console.WriteLine("Gasto del idioma inválido.");
                 return;
             }
 
-            Console.Write("Categoría: ");
+            Console.Write("Instructor: ");
             string categoria = Console.ReadLine() ?? "";
 
             if (string.IsNullOrWhiteSpace(categoria))
             {
-                Console.WriteLine("La categoría es obligatoria.");
+                Console.WriteLine("El instructor es obligatoria.");
                 return;
             }
 
             Gasto gasto = new Gasto
             {
-                Descripcion = descripcion,
-                Monto = monto,
-                Categoria = categoria
+                Nombre = descripcion,
+                Cuota = monto,
+                Instructor = categoria
             };
 
             try
             {
                 repo.Insertar(gasto);
-                Console.WriteLine("Gasto registrado.");
+                Console.WriteLine("Pago registrado.");
             }
             catch (SqlException ex)
             {
@@ -122,7 +122,7 @@ namespace CrudGastos
                 Console.WriteLine();
                 Console.WriteLine(
                     "{0,-5}{1,-26}{2,-14}{3}",
-                    "ID", "DESCRIPCIÓN", "MONTO", "CATEGORÍA");
+                    "ID", "NOMBRE", "CUOTA", "INSTRUCTOR");
 
                 Console.WriteLine(
                     "--------------------------------------------------------------");
@@ -132,9 +132,9 @@ namespace CrudGastos
                     Console.WriteLine(
                         "{0,-5}{1,-26}Q {2,-11:0.00}{3}",
                         gasto.Id,
-                        gasto.Descripcion,
-                        gasto.Monto,
-                        gasto.Categoria);
+                        gasto.Nombre,
+                        gasto.Instructor,
+                        gasto.Cuota);
 
                     total += gasto.Monto;
                 }
@@ -174,7 +174,7 @@ namespace CrudGastos
                     Console.WriteLine("===== GASTO ENCONTRADO =====");
                     Console.WriteLine(
                         "{0,-5}{1,-26}{2,-14}{3}",
-                        "ID", "DESCRIPCIÓN", "MONTO", "CATEGORÍA");
+                        "ID", "NOMBRE", "CUOTA", "INSTRUCTOR");
 
                     Console.WriteLine(
                         "--------------------------------------------------------------");
@@ -217,7 +217,7 @@ namespace CrudGastos
                 Console.WriteLine("===== GASTO ACTUAL =====");
                 Console.WriteLine(
                     "{0,-5}{1,-26}{2,-14}{3}",
-                    "ID", "DESCRIPCIÓN", "MONTO", "CATEGORÍA");
+                    "ID", "NOMBRE", "CUOTA", "INSTRUCTOR");
 
                 Console.WriteLine(
                     "--------------------------------------------------------------");
@@ -225,9 +225,9 @@ namespace CrudGastos
                 Console.WriteLine(
                     "{0,-5}{1,-26}Q {2,-11:0.00}{3}",
                     gasto.Id,
-                    gasto.Descripcion,
-                    gasto.Monto,
-                    gasto.Categoria);
+                    gasto.Nombre,
+                    gasto.Cuota,
+                    gasto.Instructor);
 
                 Console.Write("Nuevo monto: ");
 
@@ -237,7 +237,7 @@ namespace CrudGastos
                     return;
                 }
 
-                gasto.Monto = monto;
+                gasto.Cuota = monto;
 
                 Console.WriteLine(
                     repo.Actualizar(gasto)
