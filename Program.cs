@@ -136,7 +136,7 @@ namespace CrudGastos
                         gasto.Instructor,
                         gasto.Cuota);
 
-                    total += gasto.Monto;
+                    total += gasto.Cuota;
                 }
 
                 Console.WriteLine(
@@ -182,9 +182,9 @@ namespace CrudGastos
                     Console.WriteLine(
                         "{0,-5}{1,-26}Q {2,-11:0.00}{3}",
                         gasto.Id,
-                        gasto.Descripcion,
-                        gasto.Monto,
-                        gasto.Categoria);
+                        gasto.Nombre,
+                        gasto.Cuota,
+                        gasto.Instructor);
                 }
             }
             catch (SqlException ex)
